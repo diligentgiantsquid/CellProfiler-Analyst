@@ -63,7 +63,7 @@ class PlateMapPanel(wx.Panel):
         self.toggle_selection_mode = toggle_selection_mode
         self.SetData(data, shape, data_range=data_range)
         
-        self.well_keys = np.ones(np.prod(self.data.shape), dtype=np.object)
+        self.well_keys = np.ones(np.prod(self.data.shape), dtype=object)
         for i in range(len(self.well_keys)):
             self.well_keys[i] = ('Unknown Plate','Unknown Well')
         self.well_keys = self.well_keys.reshape(self.data.shape)
