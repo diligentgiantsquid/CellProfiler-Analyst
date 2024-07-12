@@ -43,6 +43,7 @@ class ImageReader(object):
         return channels
 
     def _read_image(self, filename_or_url, log_io=True, z=None):
+        extension = os.path.splitext(filename_or_url)[-1].lower()
         if p.image_url_prepend:
             parsed = urllib.parse.urlparse(p.image_url_prepend + filename_or_url)
             if parsed.scheme:
@@ -56,7 +57,7 @@ class ImageReader(object):
                             '%d %s' % (status_code, message))
                     else:
                         raise
-        if not p.force_bioformats and os.path.splitext(filename_or_url)[-1].lower() in IMAGEIO_FORMATS:
+        if not p.force_bioformats and extension in IMAGEIO_FORMATS:
             if log_io:
                 logging.info('ImageIO: Loading image from "%s"' % filename_or_url)
             try:
